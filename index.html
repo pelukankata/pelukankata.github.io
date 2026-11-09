@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;color:#1b1a19;font-family:Figtree,system-ui,sans-serif;-webkit-font-smoothing:antialiased;background-color:#e8e5df;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:#2f5fc4}a:hover{color:#1d3f8a}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden">
+  <header style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,5vw,56px)">
+    <button onClick="{{ goHome }}" style="background:none;border:0;padding:0;cursor:pointer;color:inherit;font-family:'Instrument Serif',serif;font-size:28px">Mind Matters</button>
+    <span style="font-size:14px;color:#55504a">a private wellbeing check-in</span>
+  </header>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <main style="position:relative;flex:1;display:flex;flex-direction:column;align-items:center">
+      <div style="position:relative;z-index:1;height:min(52vh,600px);max-width:92vw;aspect-ratio:820/680;background-image:url(assets/slide-mind.jpg);background-size:234% auto;background-position:51.8% 5%;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 48%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 48%,#000 62%,transparent 100%)"></div>
+      <div style="position:relative;width:100%;margin-top:-56px;z-index:2">
+        <div style="position:absolute;left:0;right:0;top:-40px;bottom:0;background:#3b6fd8;clip-path:polygon(0% 8%,7% 0%,14% 10%,22% 6%,30% 16%,38% 12%,62% 20%,70% 8%,78% 14%,86% 4%,93% 12%,100% 6%,100% 100%,0% 100%)"></div>
+        <div style="position:absolute;left:0;right:0;top:44%;bottom:0;background:#f7f6f3;clip-path:polygon(0% 10%,6% 4%,11% 12%,18% 2%,25% 14%,31% 6%,38% 16%,45% 8%,52% 18%,58% 6%,64% 14%,71% 0%,77% 12%,84% 6%,90% 16%,96% 8%,100% 12%,100% 100%,0% 100%)"></div>
+        <div style="position:relative;margin:0 auto;width:min(860px,92vw);background:#f7f6f3;padding:36px clamp(20px,5vw,56px) 40px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;clip-path:polygon(0% 3%,6% 0%,13% 2.5%,21% .5%,29% 3%,37% 0%,45% 2%,53% .5%,61% 3%,69% 0%,77% 2.5%,85% .5%,93% 2.5%,100% 0%,99.4% 50%,100% 100%,0% 100%,.6% 50%);box-shadow:0 2px 0 rgba(0,0,0,.04)">
+          <h1 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,8vw,96px);line-height:.95">How are you, really?</h1>
+          <p style="margin:0;font-size:18px;line-height:1.55;max-width:44ch;color:#3a3632;text-wrap:pretty">Ten short questions about your mood, stress, sleep, energy and connection over the past two weeks. You'll get a clear picture and tips matched to what came up.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;justify-content:center;margin-top:6px">
+            <button onClick="{{ start }}" style="background:#1b1a19;color:#f7f6f3;border:0;padding:18px 34px;font-family:Figtree,sans-serif;font-weight:600;font-size:16px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;clip-path:polygon(1% 6%,20% 0%,45% 5%,70% 0%,99% 4%,100% 50%,98% 96%,75% 100%,50% 95%,25% 100%,0% 96%,1.5% 50%)" style-hover="background:#3b6fd8">Start the check-in</button>
+            <span style="font-size:14px;color:#55504a">3 minutes · nothing is stored</span>
+          </div>
+        </div>
+      </div>
+    </main>
+    <section style="background:#f7f6f3;padding:24px clamp(20px,5vw,56px) 72px">
+      <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:32px">
+        <h2 style="margin:0;text-align:center;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(36px,5vw,56px);">What we'll ask about</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px">
+          <sc-for list="{{ areas }}" as="a" hint-placeholder-count="5">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;padding:8px">
+              <span style="background:{{ a.color }};color:#fbf8f2;font-family:Figtree,sans-serif;font-weight:600;font-size:15px;letter-spacing:.1em;text-transform:uppercase;padding:6px 22px;clip-path:polygon(3% 10%,30% 0%,60% 8%,97% 0%,100% 50%,96% 100%,65% 92%,35% 100%,0% 92%,2% 50%)">{{ a.name }}</span>
+              <span style="font-size:15px;line-height:1.5;color:#3a3632">{{ a.blurb }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isTest }}" hint-placeholder-val="{{ false }}">
+    <main style="flex:1;display:flex;flex-direction:column;padding:clamp(24px,5vw,56px) clamp(20px,5vw,56px) 80px;max-width:780px;margin:0 auto;width:100%;box-sizing:border-box;gap:36px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <span style="font-size:15px;color:#3a3632">Question {{ qNum }} of {{ qTotal }}</span>
+          <span style="background:{{ q.color }};color:#fbf8f2;font-family:Figtree,sans-serif;font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;padding:4px 18px;clip-path:polygon(3% 10%,30% 0%,60% 8%,97% 0%,100% 50%,96% 100%,65% 92%,35% 100%,0% 92%,2% 50%)">{{ q.areaName }}</span>
+        </div>
+        <div style="height:12px;background:rgba(27,26,25,.08);clip-path:polygon(0% 20%,25% 0%,50% 25%,75% 5%,100% 20%,100% 85%,75% 100%,50% 80%,25% 100%,0% 85%)">
+          <div style="height:100%;width:{{ progress }}%;background:{{ q.color }};transition:width .35s ease"></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <p style="margin:0;font-size:16px;color:#55504a">Over the last two weeks, how often have you…</p>
+        <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(38px,5.5vw,60px);line-height:1;text-wrap:balance">{{ q.text }}</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ options }}" as="o" hint-placeholder-count="4">
+          <button onClick="{{ o.pick }}" style="display:flex;align-items:center;gap:18px;text-align:left;padding:20px 26px;border:0;background:{{ o.bg }};color:{{ o.fg }};font-size:18px;cursor:pointer;transition:background .15s;clip-path:polygon(0% 6%,8% 0%,20% 5%,35% 1%,50% 6%,65% 0%,80% 5%,92% 1%,100% 5%,99.5% 50%,100% 95%,90% 100%,75% 95%,60% 100%,45% 96%,30% 100%,15% 95%,5% 100%,0% 94%,.5% 50%)" style-hover="filter:brightness(.97)">
+            <span style="width:30px;flex:none;font-family:'Instrument Serif',serif;font-size:26px;line-height:1">{{ o.key }}</span>
+            <span>{{ o.label }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <button onClick="{{ back }}" style="background:none;border:0;padding:8px 0;font-size:16px;color:#3a3632;cursor:pointer;text-decoration:underline;text-underline-offset:4px">← Back</button>
+        <span style="font-size:14px;color:#6b655e">press 1–4 to answer</span>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isResults }}" hint-placeholder-val="{{ false }}">
+    <main style="flex:1;display:flex;flex-direction:column">
+      <div style="padding:clamp(24px,5vw,56px) clamp(20px,5vw,56px) 0;max-width:1200px;margin:0 auto;width:100%;box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:40px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <span style="align-self:flex-start;background:#1b1a19;color:#f7f6f3;font-family:Figtree,sans-serif;font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;padding:4px 18px;clip-path:polygon(3% 10%,30% 0%,60% 8%,97% 0%,100% 50%,96% 100%,65% 92%,35% 100%,0% 92%,2% 50%)">Your check-in</span>
+          <h1 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(46px,6.5vw,80px);line-height:.95;text-wrap:balance">{{ overall.title }}</h1>
+          <p style="margin:0;font-size:17px;line-height:1.6;color:#3a3632;text-wrap:pretty;max-width:46ch">{{ overall.body }}</p>
+        </div>
+        <div style="width:100%;max-width:520px;justify-self:center;aspect-ratio:820/690;background-image:url(assets/slide-garden.jpg);background-size:234% auto;background-position:49% 0%;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 62%,transparent 100%)"></div>
+      </div>
+
+      <div style="position:relative;margin-top:-40px">
+        <div style="position:absolute;left:0;right:0;top:0;height:220px;background:{{ topColor }};clip-path:polygon(0% 30%,8% 18%,16% 34%,26% 14%,36% 28%,48% 10%,58% 26%,68% 12%,80% 30%,90% 16%,100% 26%,100% 100%,0% 100%)"></div>
+        <div style="position:relative;background:#f7f6f3;margin-top:70px;padding:64px clamp(20px,5vw,56px) 72px;clip-path:polygon(0% 40px,5% 14px,11% 34px,18% 6px,25% 30px,32% 10px,40% 36px,47% 4px,54% 28px,61% 12px,68% 38px,75% 8px,82% 30px,89% 6px,95% 26px,100% 12px,100% 100%,0% 100%)">
+          <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:64px">
+
+            <section style="display:flex;flex-direction:column;gap:24px">
+              <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.5vw,52px);">By area</h2>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px 32px">
+                <sc-for list="{{ breakdown }}" as="b" hint-placeholder-count="5">
+                  <div style="display:flex;flex-direction:column;gap:10px">
+                    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+                      <span style="font-family:'Instrument Serif',serif;font-size:26px;color:{{ b.color }}">{{ b.name }}</span>
+                      <span style="font-size:13px;color:#3a3632">{{ b.levelLabel }}</span>
+                    </div>
+                    <div style="height:14px;background:rgba(27,26,25,.08);clip-path:polygon(0% 20%,25% 0%,50% 25%,75% 5%,100% 20%,100% 85%,75% 100%,50% 80%,25% 100%,0% 85%)">
+                      <div style="height:100%;width:{{ b.pct }}%;background:{{ b.color }}"></div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+              <p style="margin:0;font-size:13px;color:#6b655e">Longer bar = more strain in that area.</p>
+            </section>
+
+            <section style="display:flex;flex-direction:column;gap:24px">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.5vw,52px);">Where to start</h2>
+                <p style="margin:0;font-size:16px;color:#3a3632">Tips for the areas that came up most. Pick one to try this week.</p>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:22px">
+                <sc-for list="{{ tips }}" as="t" hint-placeholder-count="6">
+                  <article style="background:{{ t.tint }};padding:30px 28px 32px;display:flex;flex-direction:column;gap:12px;clip-path:polygon(0% 3%,9% 0%,20% 2.5%,33% .5%,47% 3%,60% 0%,74% 2.5%,88% .5%,100% 2.5%,99% 30%,100% 62%,99.2% 97%,86% 100%,72% 97.5%,58% 100%,44% 97%,30% 100%,16% 97.5%,0% 100%,1% 64%,0% 32%)">
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+                      <span style="background:{{ t.color }};color:#fbf8f2;font-family:Figtree,sans-serif;font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:2px 14px;clip-path:polygon(3% 10%,30% 0%,60% 8%,97% 0%,100% 50%,96% 100%,65% 92%,35% 100%,0% 92%,2% 50%)">{{ t.areaName }}</span>
+                      <span style="font-size:13px;color:#3a3632">{{ t.time }}</span>
+                    </div>
+                    <h3 style="margin:4px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:30px;line-height:1;">{{ t.title }}</h3>
+                    <p style="margin:0;font-size:15px;line-height:1.55;color:#2a2725;text-wrap:pretty">{{ t.body }}</p>
+                  </article>
+                </sc-for>
+              </div>
+            </section>
+
+            <section style="background:#c0283a;color:#fbf8f2;padding:clamp(28px,4vw,44px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:28px;align-items:center;clip-path:polygon(0% 4%,10% 0%,22% 3%,36% .5%,50% 3.5%,64% 0%,78% 3%,90% .5%,100% 3%,99.4% 50%,100% 97%,88% 100%,74% 97%,60% 100%,46% 97.5%,32% 100%,18% 97%,6% 100%,0% 96%,.6% 50%)">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(32px,4vw,44px);line-height:1;">{{ supportTitle }}</h2>
+                <p style="margin:0;font-size:15.5px;line-height:1.55">If you're in crisis or thinking about harming yourself, contact a crisis line or local emergency services now. You don't have to be at a breaking point to reach out.</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px;color:#1b1a19">
+                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 18px;background:#f7f6f3"><span>US: call or text</span><strong>988</strong></div>
+                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 18px;background:#f7f6f3"><span>UK &amp; ROI: Samaritans</span><strong>116 123</strong></div>
+                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 18px;background:#f7f6f3"><span>Elsewhere</span><a href="https://findahelpline.com" style="color:#a01f30;font-weight:700">findahelpline.com</a></div>
+              </div>
+            </section>
+
+            <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center">
+              <p style="margin:0;font-size:13.5px;line-height:1.55;color:#55504a;max-width:62ch">This check-in is a self-reflection tool, not a diagnosis. If something here worries you, a doctor or mental health professional can help you make sense of it.</p>
+              <button onClick="{{ start }}" style="background:#1b1a19;color:#f7f6f3;border:0;padding:14px 28px;font-family:Figtree,sans-serif;font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;clip-path:polygon(1% 6%,20% 0%,45% 5%,70% 0%,99% 4%,100% 50%,98% 96%,75% 100%,50% 95%,25% 100%,0% 96%,1.5% 50%)" style-hover="background:#3b6fd8">Retake check-in</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;test&quot;,&quot;results&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;'home'|'test'|'results'&quot;},&quot;tipsPerArea&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;min&quot;:1,&quot;max&quot;:3,&quot;default&quot;:2,&quot;tsType&quot;:&quot;number&quot;}}">
+const AREAS = [
+  { id: 'mood', name: 'Mood', color: '#c4517a', tint: '#f3dbe3', blurb: 'How your days have felt, emotionally.' },
+  { id: 'stress', name: 'Stress', color: '#6a3ec4', tint: '#e5dcf5', blurb: 'Worry, tension and feeling on edge.' },
+  { id: 'sleep', name: 'Sleep', color: '#3b6fd8', tint: '#dbe5f8', blurb: 'Falling asleep, staying asleep, waking rested.' },
+  { id: 'energy', name: 'Energy', color: '#d9661f', tint: '#fbe3d0', blurb: 'Motivation, focus and getting through the day.' },
+  { id: 'connection', name: 'Connection', color: '#3f8a2e', tint: '#dcebd4', blurb: 'Feeling close to and supported by others.' },
+];
+const QUESTIONS = [
+  { area: 'mood', text: 'felt down, low or hopeless?' },
+  { area: 'stress', text: 'felt nervous, anxious or on edge?' },
+  { area: 'sleep', text: 'had trouble falling or staying asleep?' },
+  { area: 'energy', text: 'felt tired or had little energy?' },
+  { area: 'connection', text: 'felt lonely or cut off from people?' },
+  { area: 'mood', text: 'had little interest in things you usually enjoy?' },
+  { area: 'stress', text: 'found it hard to stop worrying?' },
+  { area: 'sleep', text: 'woken up feeling unrested?' },
+  { area: 'energy', text: 'struggled to concentrate on everyday tasks?' },
+  { area: 'connection', text: "felt you had no one to talk to?" },
+];
+const OPTIONS = ['Not at all', 'Several days', 'More than half the days', 'Nearly every day'];
+const TIPS = {
+  mood: [
+    { title: 'Schedule one small good thing', time: '10 min', body: 'Low mood shrinks motivation before it shrinks enjoyment. Put one easy, pleasant activity in your day and do it even if you don\u2019t feel like it.' },
+    { title: 'Get outside before noon', time: '15 min', body: 'Morning daylight and a short walk can lift mood and steady your body clock. No goal needed beyond being outside.' },
+    { title: 'Name three specifics', time: '2 min', body: 'Each evening, write three concrete moments that went okay. Specific beats general: \u201cthe coffee was hot\u201d counts.' },
+  ],
+  stress: [
+    { title: 'Breathe out longer than in', time: '2 min', body: 'Inhale for 4, exhale for 6\u20138. A longer out-breath signals your nervous system to settle. Repeat for ten rounds.' },
+    { title: 'Give worry an appointment', time: '15 min', body: 'Set a daily 15-minute worry window. When a worry shows up outside it, jot it down and save it for later.' },
+    { title: 'Shrink the next step', time: '5 min', body: 'Pick the thing weighing on you most and write the very next physical action. Just that one.' },
+  ],
+  sleep: [
+    { title: 'Keep a fixed wake time', time: 'Daily', body: 'Getting up at the same time every day, weekends included, does more for sleep than an early bedtime.' },
+    { title: 'Leave bed if you can\u2019t sleep', time: '20 min', body: 'If you\u2019re awake for what feels like 20 minutes, get up and do something quiet in dim light, then go back when sleepy.' },
+    { title: 'Screens down an hour before', time: '60 min', body: 'Swap the last hour of scrolling for something slow: a book, a shower, stretching. Your brain needs a runway.' },
+  ],
+  energy: [
+    { title: 'Move for ten minutes', time: '10 min', body: 'Short bursts of movement raise energy more reliably than rest when you\u2019re low. A brisk walk is enough.' },
+    { title: 'Work in 25-minute blocks', time: '25 min', body: 'Focus for 25, rest for 5. Smaller blocks make starting easier when concentration is thin.' },
+    { title: 'Check the basics', time: '2 min', body: 'Water, a real meal, daylight. Low energy is often a sum of small gaps worth ruling out first.' },
+  ],
+  connection: [
+    { title: 'Send one low-stakes message', time: '2 min', body: 'Text someone a photo, a memory or a \u201cthought of you.\u201d It doesn\u2019t need to start a long conversation.' },
+    { title: 'Tell one person how you are', time: '10 min', body: 'Pick someone you trust and give them the honest version. Most people are glad to be asked to listen.' },
+    { title: 'Join something regular', time: 'Weekly', body: 'A class, club or volunteer shift builds connection through repetition, without having to make plans each time.' },
+  ],
+};
+const area = id => AREAS.find(a => a.id === id);
+
+class Component extends DCLogic {
+  state = { screen: this.props.startScreen ?? 'home', idx: 0, answers: this.props.startScreen === 'results' ? [2,1,2,3,0,1,2,2,3,1] : [] };
+
+  componentDidMount() {
+    this.onKey = e => {
+      if (this.state.screen !== 'test') return;
+      const n = parseInt(e.key, 10);
+      if (n >= 1 && n <= 4) this.pick(n - 1);
+    };
+    window.addEventListener('keydown', this.onKey);
+  }
+  componentWillUnmount() { window.removeEventListener('keydown', this.onKey); clearTimeout(this.t); }
+
+  pick(v) {
+    const answers = [...this.state.answers];
+    answers[this.state.idx] = v;
+    this.setState({ answers });
+    clearTimeout(this.t);
+    this.t = setTimeout(() => {
+      if (this.state.idx < QUESTIONS.length - 1) this.setState(s => ({ idx: s.idx + 1 }));
+      else { this.setState({ screen: 'results' }); window.scrollTo(0, 0); }
+    }, 260);
+  }
+
+  renderVals() {
+    const { screen, idx, answers } = this.state;
+    const q = QUESTIONS[idx];
+    const qa = area(q.area);
+    const scores = AREAS.map(a => {
+      const vals = QUESTIONS.map((qq, i) => qq.area === a.id ? (answers[i] ?? 0) : null).filter(v => v !== null);
+      const pct = Math.round(vals.reduce((s, v) => s + v, 0) / (vals.length * 3) * 100);
+      const level = pct >= 67 ? 2 : pct >= 34 ? 1 : 0;
+      return { ...a, pct: Math.max(pct, 3), raw: pct, level, levelLabel: ['Doing okay', 'Some strain', 'Needs care'][level] };
+    });
+    const total = answers.reduce((s, v) => s + (v ?? 0), 0) / (QUESTIONS.length * 3);
+    const overall = total >= 0.6
+      ? { title: 'You\u2019re carrying a lot right now', body: 'Your answers suggest things have been hard across several areas. That\u2019s worth taking seriously. The tips below can help, and talking to a professional could make a real difference.' }
+      : total >= 0.3
+      ? { title: 'Some things are weighing on you', body: 'You\u2019re getting by, but a few areas are under strain. Small, steady changes in those areas tend to help most.' }
+      : { title: 'You\u2019re in a fairly steady place', body: 'Most areas look okay right now. The tips below are ways to keep it that way, focused on where you scored highest.' };
+    const ranked = [...scores].sort((a, b) => b.raw - a.raw);
+    const focus = ranked.filter(s => s.level > 0).slice(0, 3);
+    const use = focus.length ? focus : ranked.slice(0, 2);
+    const per = this.props.tipsPerArea ?? 2;
+    const tips = use.flatMap(a => TIPS[a.id].slice(0, per).map(t => ({ ...t, areaName: a.name, tint: a.tint, color: a.color })));
+    const go = s => () => { this.setState({ screen: s, idx: 0, answers: s === 'test' ? [] : answers }); window.scrollTo(0, 0); };
+    return {
+      isHome: screen === 'home', isTest: screen === 'test', isResults: screen === 'results',
+      areas: AREAS, goHome: go('home'), start: go('test'),
+      qNum: idx + 1, qTotal: QUESTIONS.length, progress: Math.round((idx + 1) / QUESTIONS.length * 100),
+      q: { text: q.text, areaName: qa.name, color: qa.color },
+      options: OPTIONS.map((label, i) => {
+        const sel = answers[idx] === i;
+        return { label, key: i + 1, pick: () => this.pick(i), bg: sel ? qa.color : '#f7f6f3', fg: sel ? '#fbf8f2' : '#1b1a19' };
+      }),
+      back: () => idx > 0 ? this.setState({ idx: idx - 1 }) : go('home')(),
+      breakdown: scores, overall, tips, topColor: ranked[0].color,
+      supportTitle: total >= 0.6 ? 'Please reach out to someone today' : 'Need to talk to someone now?',
+    };
+  }
+}
+</script>
+</body>
+</html>
