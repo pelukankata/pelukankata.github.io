@@ -24,7 +24,7 @@ button{font-family:inherit}
 
   <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
     <main style="position:relative;flex:1;display:flex;flex-direction:column;align-items:center">
-      <div style="position:relative;z-index:1;height:min(52vh,600px);max-width:92vw;aspect-ratio:820/680;background-image:url(assets/slide-mind.jpg);background-size:234% auto;background-position:51.8% 5%;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 48%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 48%,#000 62%,transparent 100%)"></div>
+      <div style="position:relative;z-index:1;height:min(52vh,600px);max-width:92vw;aspect-ratio:938/1080;background-image:url(assets/fire-in-heart.jpg);background-size:contain;background-repeat:no-repeat;background-position:center;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 48%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 48%,#000 62%,transparent 100%)"></div>
       <div style="position:relative;width:100%;margin-top:-56px;z-index:2">
         <div style="position:absolute;left:0;right:0;top:-40px;bottom:0;background:#3b6fd8;clip-path:polygon(0% 8%,7% 0%,14% 10%,22% 6%,30% 16%,38% 12%,62% 20%,70% 8%,78% 14%,86% 4%,93% 12%,100% 6%,100% 100%,0% 100%)"></div>
         <div style="position:absolute;left:0;right:0;top:44%;bottom:0;background:#f7f6f3;clip-path:polygon(0% 10%,6% 4%,11% 12%,18% 2%,25% 14%,31% 6%,38% 16%,45% 8%,52% 18%,58% 6%,64% 14%,71% 0%,77% 12%,84% 6%,90% 16%,96% 8%,100% 12%,100% 100%,0% 100%)"></div>
@@ -44,6 +44,7 @@ button{font-family:inherit}
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px">
           <sc-for list="{{ areas }}" as="a" hint-placeholder-count="5">
             <div style="display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;padding:8px">
+              <div style="width:min(180px,60vw);aspect-ratio:1;background-image:url({{ a.img }});background-size:contain;background-repeat:no-repeat;background-position:center;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 70%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 70%,transparent 100%)"></div>
               <span style="background:{{ a.color }};color:#fbf8f2;font-family:Figtree,sans-serif;font-weight:600;font-size:15px;letter-spacing:.1em;text-transform:uppercase;padding:6px 22px;clip-path:polygon(3% 10%,30% 0%,60% 8%,97% 0%,100% 50%,96% 100%,65% 92%,35% 100%,0% 92%,2% 50%)">{{ a.name }}</span>
               <span style="font-size:15px;line-height:1.5;color:#3a3632">{{ a.blurb }}</span>
             </div>
@@ -64,9 +65,12 @@ button{font-family:inherit}
           <div style="height:100%;width:{{ progress }}%;background:{{ q.color }};transition:width .35s ease"></div>
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <p style="margin:0;font-size:16px;color:#55504a">Over the last two weeks, how often have you…</p>
-        <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(38px,5.5vw,60px);line-height:1;text-wrap:balance">{{ q.text }}</h2>
+      <div style="display:flex;flex-wrap:wrap-reverse;align-items:center;gap:16px 28px">
+        <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:10px">
+          <p style="margin:0;font-size:16px;color:#55504a">Over the last two weeks, how often have you…</p>
+          <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(38px,5.5vw,60px);line-height:1;text-wrap:balance">{{ q.text }}</h2>
+        </div>
+        <div aria-hidden="true" style="flex:none;width:clamp(110px,20vw,170px);aspect-ratio:1;background-image:url({{ q.img }});background-size:contain;background-repeat:no-repeat;background-position:center;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 70%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 70%,transparent 100%)"></div>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px">
         <sc-for list="{{ options }}" as="o" hint-placeholder-count="4">
@@ -91,7 +95,7 @@ button{font-family:inherit}
           <h1 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(46px,6.5vw,80px);line-height:.95;text-wrap:balance">{{ overall.title }}</h1>
           <p style="margin:0;font-size:17px;line-height:1.6;color:#3a3632;text-wrap:pretty;max-width:46ch">{{ overall.body }}</p>
         </div>
-        <div style="width:100%;max-width:520px;justify-self:center;aspect-ratio:820/690;background-image:url(assets/slide-garden.jpg);background-size:234% auto;background-position:49% 0%;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 62%,transparent 100%)"></div>
+        <div style="width:100%;max-width:520px;justify-self:center;aspect-ratio:1;background-image:url({{ heroImg }});background-size:contain;background-repeat:no-repeat;background-position:center;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 62%,transparent 100%)"></div>
       </div>
 
       <div style="position:relative;margin-top:-40px">
@@ -120,7 +124,7 @@ button{font-family:inherit}
             <section style="display:flex;flex-direction:column;gap:24px">
               <div style="display:flex;flex-direction:column;gap:6px">
                 <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.5vw,52px);">Where to start</h2>
-                <p style="margin:0;font-size:16px;color:#3a3632">Tips for the areas that came up most. Pick one to try this week.</p>
+                <p style="margin:0;font-size:16px;color:#3a3632">{{ tipsIntro }}</p>
               </div>
               <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:22px">
                 <sc-for list="{{ tips }}" as="t" hint-placeholder-count="6">
@@ -161,50 +165,52 @@ button{font-family:inherit}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;startScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;test&quot;,&quot;results&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;'home'|'test'|'results'&quot;},&quot;tipsPerArea&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;min&quot;:1,&quot;max&quot;:3,&quot;default&quot;:2,&quot;tsType&quot;:&quot;number&quot;}}">
 const AREAS = [
-  { id: 'mood', name: 'Mood', color: '#c4517a', tint: '#f3dbe3', blurb: 'How your days have felt, emotionally.' },
-  { id: 'stress', name: 'Stress', color: '#6a3ec4', tint: '#e5dcf5', blurb: 'Worry, tension and feeling on edge.' },
-  { id: 'sleep', name: 'Sleep', color: '#3b6fd8', tint: '#dbe5f8', blurb: 'Falling asleep, staying asleep, waking rested.' },
-  { id: 'energy', name: 'Energy', color: '#d9661f', tint: '#fbe3d0', blurb: 'Motivation, focus and getting through the day.' },
-  { id: 'connection', name: 'Connection', color: '#3f8a2e', tint: '#dcebd4', blurb: 'Feeling close to and supported by others.' },
+  { id: 'mood', name: 'Mood', color: '#c4517a', tint: '#f3dbe3', blurb: 'How your days have felt, emotionally.', img: 'assets/man-broken.jpg' },
+  { id: 'stress', name: 'Stress', color: '#6a3ec4', tint: '#e5dcf5', blurb: 'Worry, tension and feeling on edge.', img: 'assets/women-surrounded-by-hands.jpg' },
+  { id: 'sleep', name: 'Sleep', color: '#3b6fd8', tint: '#dbe5f8', blurb: 'Falling asleep, staying asleep, waking rested.', img: 'assets/man-brain-entangled.jpg' },
+  { id: 'energy', name: 'Energy', color: '#d9661f', tint: '#fbe3d0', blurb: 'Motivation, focus and getting through the day.', img: 'assets/breaking-chains.jpg' },
+  { id: 'connection', name: 'Connection', color: '#3f8a2e', tint: '#dcebd4', blurb: 'Feeling close to and supported by others.', img: 'assets/man-woman-hugs.jpg' },
 ];
+// Q1 + Q6 = PHQ-2, Q2 + Q7 = GAD-2 (validated wording; each pair scores 0–6, ≥3 = positive screen)
 const QUESTIONS = [
-  { area: 'mood', text: 'felt down, low or hopeless?' },
+  { area: 'mood', text: 'felt down, depressed or hopeless?' },
   { area: 'stress', text: 'felt nervous, anxious or on edge?' },
   { area: 'sleep', text: 'had trouble falling or staying asleep?' },
   { area: 'energy', text: 'felt tired or had little energy?' },
   { area: 'connection', text: 'felt lonely or cut off from people?' },
-  { area: 'mood', text: 'had little interest in things you usually enjoy?' },
-  { area: 'stress', text: 'found it hard to stop worrying?' },
+  { area: 'mood', text: 'had little interest or pleasure in doing things?' },
+  { area: 'stress', text: 'not been able to stop or control worrying?' },
   { area: 'sleep', text: 'woken up feeling unrested?' },
   { area: 'energy', text: 'struggled to concentrate on everyday tasks?' },
   { area: 'connection', text: "felt you had no one to talk to?" },
 ];
 const OPTIONS = ['Not at all', 'Several days', 'More than half the days', 'Nearly every day'];
+// `for` = indexes of the QUESTIONS each tip targets; tips are ranked by how high those items scored
 const TIPS = {
   mood: [
-    { title: 'Schedule one small good thing', time: '10 min', body: 'Low mood shrinks motivation before it shrinks enjoyment. Put one easy, pleasant activity in your day and do it even if you don\u2019t feel like it.' },
-    { title: 'Get outside before noon', time: '15 min', body: 'Morning daylight and a short walk can lift mood and steady your body clock. No goal needed beyond being outside.' },
-    { title: 'Name three specifics', time: '2 min', body: 'Each evening, write three concrete moments that went okay. Specific beats general: \u201cthe coffee was hot\u201d counts.' },
+    { for: [5], title: 'Schedule one small good thing', time: '10 min', body: 'With low mood, motivation tends to follow action rather than lead it. Put one easy, pleasant activity in your day and do it before you feel like it.' },
+    { for: [0], title: 'Get outside before noon', time: '15 min', body: 'Morning daylight and a short walk can lift mood and steady your body clock. No goal needed beyond being outside.' },
+    { for: [0], title: 'Name three specifics', time: '2 min', body: 'Each evening, write three concrete moments that went okay. Specific beats general: \u201cthe coffee was hot\u201d counts.' },
   ],
   stress: [
-    { title: 'Breathe out longer than in', time: '2 min', body: 'Inhale for 4, exhale for 6\u20138. A longer out-breath signals your nervous system to settle. Repeat for ten rounds.' },
-    { title: 'Give worry an appointment', time: '15 min', body: 'Set a daily 15-minute worry window. When a worry shows up outside it, jot it down and save it for later.' },
-    { title: 'Shrink the next step', time: '5 min', body: 'Pick the thing weighing on you most and write the very next physical action. Just that one.' },
+    { for: [1], title: 'Breathe out longer than in', time: '2 min', body: 'Inhale for 4, exhale for 6\u20138. A longer out-breath signals your nervous system to settle. Repeat for ten rounds.' },
+    { for: [6], title: 'Give worry an appointment', time: '15 min', body: 'Set a daily 15-minute worry window. When a worry shows up outside it, jot it down and save it for later.' },
+    { for: [6], title: 'Shrink the next step', time: '5 min', body: 'Pick the thing weighing on you most and write the very next physical action. Just that one.' },
   ],
   sleep: [
-    { title: 'Keep a fixed wake time', time: 'Daily', body: 'Getting up at the same time every day, weekends included, does more for sleep than an early bedtime.' },
-    { title: 'Leave bed if you can\u2019t sleep', time: '20 min', body: 'If you\u2019re awake for what feels like 20 minutes, get up and do something quiet in dim light, then go back when sleepy.' },
-    { title: 'Screens down an hour before', time: '60 min', body: 'Swap the last hour of scrolling for something slow: a book, a shower, stretching. Your brain needs a runway.' },
+    { for: [2, 7], title: 'Keep a fixed wake time', time: 'Daily', body: 'Getting up at the same time every day, weekends included, does more for sleep than an early bedtime.' },
+    { for: [2], title: 'Leave bed if you can\u2019t sleep', time: '20 min', body: 'If you\u2019re awake for what feels like 20 minutes, get up and do something quiet in dim light, then go back when sleepy.' },
+    { for: [2], title: 'Screens down an hour before', time: '60 min', body: 'Swap the last hour of scrolling for something slow: a book, a shower, stretching. Your brain needs a runway.' },
   ],
   energy: [
-    { title: 'Move for ten minutes', time: '10 min', body: 'Short bursts of movement raise energy more reliably than rest when you\u2019re low. A brisk walk is enough.' },
-    { title: 'Work in 25-minute blocks', time: '25 min', body: 'Focus for 25, rest for 5. Smaller blocks make starting easier when concentration is thin.' },
-    { title: 'Check the basics', time: '2 min', body: 'Water, a real meal, daylight. Low energy is often a sum of small gaps worth ruling out first.' },
+    { for: [3], title: 'Move for ten minutes', time: '10 min', body: 'Short bursts of movement raise energy more reliably than rest when you\u2019re low. A brisk walk is enough.' },
+    { for: [8], title: 'Work in 25-minute blocks', time: '25 min', body: 'Focus for 25, rest for 5. Smaller blocks make starting easier when concentration is thin.' },
+    { for: [3, 8], title: 'Check the basics', time: '2 min', body: 'Water, a real meal, daylight. Low energy is often a sum of small gaps worth ruling out first. If tiredness lasts for weeks anyway, see a doctor — things like anaemia or thyroid problems are worth checking.' },
   ],
   connection: [
-    { title: 'Send one low-stakes message', time: '2 min', body: 'Text someone a photo, a memory or a \u201cthought of you.\u201d It doesn\u2019t need to start a long conversation.' },
-    { title: 'Tell one person how you are', time: '10 min', body: 'Pick someone you trust and give them the honest version. Most people are glad to be asked to listen.' },
-    { title: 'Join something regular', time: 'Weekly', body: 'A class, club or volunteer shift builds connection through repetition, without having to make plans each time.' },
+    { for: [4], title: 'Send one low-stakes message', time: '2 min', body: 'Text someone a photo, a memory or a \u201cthought of you.\u201d It doesn\u2019t need to start a long conversation.' },
+    { for: [9], title: 'Tell one person how you are', time: '10 min', body: 'Pick someone you trust and give them the honest version. Most people are glad to be asked to listen.' },
+    { for: [4], title: 'Join something regular', time: 'Weekly', body: 'A class, club or volunteer shift builds connection through repetition, without having to make plans each time.' },
   ],
 };
 const area = id => AREAS.find(a => a.id === id);
@@ -237,36 +243,70 @@ class Component extends DCLogic {
     const { screen, idx, answers } = this.state;
     const q = QUESTIONS[idx];
     const qa = area(q.area);
+    const ans = i => answers[i] ?? 0;
+    // Area level uses the raw 0\u20136 sum of its two items: 0\u20132 okay, 3\u20134 strain, 5\u20136 needs care.
+    // (3 = the PHQ-2 / GAD-2 positive-screen cut-off, so a positive screen can never read as "Doing okay".)
     const scores = AREAS.map(a => {
-      const vals = QUESTIONS.map((qq, i) => qq.area === a.id ? (answers[i] ?? 0) : null).filter(v => v !== null);
-      const pct = Math.round(vals.reduce((s, v) => s + v, 0) / (vals.length * 3) * 100);
-      const level = pct >= 67 ? 2 : pct >= 34 ? 1 : 0;
-      return { ...a, pct: Math.max(pct, 3), raw: pct, level, levelLabel: ['Doing okay', 'Some strain', 'Needs care'][level] };
+      const sum = QUESTIONS.reduce((s, qq, i) => qq.area === a.id ? s + ans(i) : s, 0);
+      const max = QUESTIONS.filter(qq => qq.area === a.id).length * 3;
+      const pct = Math.round(sum / max * 100);
+      const level = sum >= 5 ? 2 : sum >= 3 ? 1 : 0;
+      return { ...a, pct: Math.max(pct, 3), raw: pct, sum, level, levelLabel: ['Doing okay', 'Some strain', 'Needs care'][level] };
     });
+    const phq2 = ans(0) + ans(5);
+    const gad2 = ans(1) + ans(6);
+    const flags = [phq2 >= 3 && 'low mood', gad2 >= 3 && 'anxiety'].filter(Boolean);
     const total = answers.reduce((s, v) => s + (v ?? 0), 0) / (QUESTIONS.length * 3);
-    const overall = total >= 0.6
-      ? { title: 'You\u2019re carrying a lot right now', body: 'Your answers suggest things have been hard across several areas. That\u2019s worth taking seriously. The tips below can help, and talking to a professional could make a real difference.' }
-      : total >= 0.3
+    const anyCare = scores.some(s => s.level === 2);
+    const anyStrain = scores.some(s => s.level >= 1);
+    // The worst signal decides the verdict, so good scores in one area can't average away a positive screen.
+    const serious = flags.length > 0 || anyCare || total >= 0.6;
+    const flagText = flags.join(' and ');
+    const overall = serious
+      ? { title: 'You\u2019re carrying a lot right now', body: flags.length
+          ? `Your answers about ${flagText} are at the level where a proper check with a doctor or mental health professional is recommended. That isn\u2019t a diagnosis, but it\u2019s worth taking seriously. The tips below can help in the meantime.`
+          : 'Your answers suggest at least one area has been really hard lately. That\u2019s worth taking seriously. The tips below can help, and talking to a professional could make a real difference.' }
+      : anyStrain || total >= 0.3
       ? { title: 'Some things are weighing on you', body: 'You\u2019re getting by, but a few areas are under strain. Small, steady changes in those areas tend to help most.' }
-      : { title: 'You\u2019re in a fairly steady place', body: 'Most areas look okay right now. The tips below are ways to keep it that way, focused on where you scored highest.' };
-    const ranked = [...scores].sort((a, b) => b.raw - a.raw);
+      : { title: 'You\u2019re in a fairly steady place', body: 'Most areas look okay right now. The tips below are simple habits that help keep it that way.' };
+    const ranked = [...scores].sort((a, b) => b.sum - a.sum);
     const focus = ranked.filter(s => s.level > 0).slice(0, 3);
     const use = focus.length ? focus : ranked.slice(0, 2);
     const per = this.props.tipsPerArea ?? 2;
-    const tips = use.flatMap(a => TIPS[a.id].slice(0, per).map(t => ({ ...t, areaName: a.name, tint: a.tint, color: a.color })));
+    // Within each area, put first the tips that target the questions that scored highest (ties keep listed order).
+    const tipScore = t => Math.max(...t.for.map(ans));
+    const areaTips = use.flatMap(a => [...TIPS[a.id]].sort((x, y) => tipScore(y) - tipScore(x)).slice(0, per)
+      .map(t => ({ ...t, areaName: a.name, tint: a.tint, color: a.color })));
+    const supportCard = {
+      areaName: 'First step', time: 'This week', color: '#1b1a19', tint: '#e4e0d9',
+      title: 'Talk to someone who can help',
+      body: flags.length
+        ? `Book a GP, campus counselling or a psychologist and tell them what came up here about ${flagText}. Bringing this result can make it easier to start.`
+        : 'Book a GP, campus counselling or a psychologist and tell them what\u2019s been hard. Bringing this result can make it easier to start.',
+    };
+    const tips = serious ? [supportCard, ...areaTips] : areaTips;
+    const tipsIntro = serious
+      ? 'Start with the first card. Then pick one of the others to try this week.'
+      : focus.length
+      ? 'Tips for the areas that came up most. Pick one to try this week.'
+      : total >= 0.3
+      ? 'No single area stood out, but a little strain everywhere adds up. Here are a couple of places to start.'
+      : 'Nothing stood out, so here are a couple of habits that protect wellbeing. Pick one to try this week.';
     const go = s => () => { this.setState({ screen: s, idx: 0, answers: s === 'test' ? [] : answers }); window.scrollTo(0, 0); };
     return {
       isHome: screen === 'home', isTest: screen === 'test', isResults: screen === 'results',
       areas: AREAS, goHome: go('home'), start: go('test'),
       qNum: idx + 1, qTotal: QUESTIONS.length, progress: Math.round((idx + 1) / QUESTIONS.length * 100),
-      q: { text: q.text, areaName: qa.name, color: qa.color },
+      q: { text: q.text, areaName: qa.name, color: qa.color, img: qa.img },
       options: OPTIONS.map((label, i) => {
         const sel = answers[idx] === i;
         return { label, key: i + 1, pick: () => this.pick(i), bg: sel ? qa.color : '#f7f6f3', fg: sel ? '#fbf8f2' : '#1b1a19' };
       }),
       back: () => idx > 0 ? this.setState({ idx: idx - 1 }) : go('home')(),
-      breakdown: scores, overall, tips, topColor: ranked[0].color,
-      supportTitle: total >= 0.6 ? 'Please reach out to someone today' : 'Need to talk to someone now?',
+      breakdown: scores, overall, tips, tipsIntro,
+      // Results illustration follows the verdict: hard climb → steady ascent → tending the garden
+      heroImg: serious ? 'assets/man-climbing-crevasse.jpg' : (anyStrain || total >= 0.3) ? 'assets/man-on-ladder-ascending.jpg' : 'assets/watering.jpg', topColor: ranked[0].color,
+      supportTitle: serious ? 'Please reach out to someone today' : 'Need to talk to someone now?',
     };
   }
 }
